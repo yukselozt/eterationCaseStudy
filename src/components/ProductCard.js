@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"; // İkon setini seçin
 
-const ProductCard = ({ productImage, productName, productPrice, onPress }) => {
-  const [favori, setFavori] = useState(true); // Favori durumu için bir state kullanıyoruz
+const ProductCard = ({ product, onPress }) => {
+  const [favori, setFavori] = useState(false); // Favori durumu için bir state kullanıyoruz
 
   const toggleFavori = () => {
     setFavori(!favori); // Favori durumunu tersine çevir
@@ -15,13 +15,13 @@ const ProductCard = ({ productImage, productName, productPrice, onPress }) => {
         <TouchableOpacity style={styles.favoriButton} onPress={toggleFavori}>
           <Icon name="heart" size={35} color={favori ? "red" : "gray"} />
         </TouchableOpacity>
-        <Image source={{ uri: productImage }} style={styles.image} />
-        <Text style={styles.productPrice}>{productPrice} ₺</Text>
+        <Image source={{ uri: product.image }} style={styles.image} />
+        <Text style={styles.productPrice}>{product.price} ₺</Text>
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.productName}>
-          {productName}
+          {product.name}
         </Text>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text style={styles.buttonText}>Satın Al</Text>
+          <Text style={styles.buttonText}>Add to Chart</Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
