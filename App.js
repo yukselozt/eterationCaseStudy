@@ -30,12 +30,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#0ff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
