@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   aciklama: {
-    fontSize: 14.5,
+    fontSize: 16,
     textAlign: "left",
     marginBottom: 16,
   },

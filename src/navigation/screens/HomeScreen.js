@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   Button,
   FlatList,
+  TextInput,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -20,24 +21,37 @@ export const HomeScreen = () => {
   const Navigation = useNavigation();
   const { GeneralResponse } = useSelector((state) => state);
   const { data, loading, error } = useApiData();
-
+  const [searchText, setSearchText] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const handleSearch = (text) => {
+    setSearchText(text);
+  };
   return (
     <View style={styles.container}>
       {loading ? (
         <ActivityIndicator size="large" color="blue" />
       ) : (
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id}
-          horizontal={false} // Yatayda sıralamayı devre dışı bırakın
-          numColumns={2}
-          renderItem={({ item }) => (
-            <ProductCard
-              product={item}
-              onPress={() => Navigation.navigate("Details", { item })}
-            />
-          )}
-        />
+        <>
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Arama yap..."
+            value={searchText}
+            onChangeText={handleSearch}
+          />
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.id}
+            horizontal={false}
+            numColumns={2}
+            contentContainerStyle={{ alignItems: "center" }}
+            renderItem={({ item }) => (
+              <ProductCard
+                product={item}
+                onPress={() => Navigation.navigate("Details", { item })}
+              />
+            )}
+          />
+        </>
       )}
     </View>
   );
@@ -48,5 +62,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  searchBar: {
+    height: 40,
+    width: "90%",
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    marginVertical: 8,
   },
 });

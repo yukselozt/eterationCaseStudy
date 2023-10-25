@@ -20,7 +20,10 @@ const ProductCard = ({ product, onPress }) => {
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.productName}>
           {product.name}
         </Text>
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => console.log("Add to Chart")}
+        >
           <Text style={styles.buttonText}>Add to Chart</Text>
         </TouchableOpacity>
       </View>
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
     right: 8,
   },
   card: {
-    width: 180,
+    width: 170,
     backgroundColor: "white",
     borderRadius: 8,
     shadowColor: "#000",
