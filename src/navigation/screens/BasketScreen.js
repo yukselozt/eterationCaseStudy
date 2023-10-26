@@ -9,10 +9,15 @@ import {
 import BasketItem from "../../components/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
 import NoElementForFlatList from "../../components/NoElementForFlatList";
+import { loadCardItems } from "../../redux/storage";
+import { useEffect } from "react";
 
 export const BasketScreen = () => {
   const { GeneralResponse } = useSelector((state) => state);
   const products = GeneralResponse.basketItems;
+  useEffect(() => {
+    loadCardItems();
+  }, []);
   return (
     <View style={styles.container}>
       <FlatList

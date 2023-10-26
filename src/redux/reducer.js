@@ -1,3 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { loadCartItems } from "./storage";
+
 const INITIAL_STATE = {
   name: "Yüksel",
   age: 26,
@@ -12,8 +15,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, name: action.payload };
     case "SET_AGE":
       return { ...state, age: action.payload };
-    case "INCREMENT_AGE":
-      return { ...state, age: state.age + action.payload };
     case "ADD_TO_BASKET":
       const product = action.payload;
       const existingProduct = state.basketItems.find(
@@ -27,9 +28,10 @@ export default (state = INITIAL_STATE, action) => {
         product.quantity = 1;
         state.basketItems.push(product);
       }
+      AsyncStorage.setItem("basketItems", JSON.stringify(state.basketItems));
       return {
         ...state,
-        totalPrice: state.totalPrice + parseInt(product.price),
+        totalPrice: state.totalPrice + parseFloat(product.price),
       };
     case "SUBTRACT_TO_BASKET":
       const productSub = action.payload;
