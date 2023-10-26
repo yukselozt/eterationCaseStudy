@@ -10,14 +10,14 @@ import {
   Text,
   View,
 } from "react-native";
-import { IncrementAge } from "../../redux/action";
+import { IncrementAge, AddToBasket } from "../../redux/action";
 import { useNavigation } from "@react-navigation/native";
 import ProductCard from "../../components/ProductCard";
 import useApiData from "../../hooks/useApiData";
 import { useEffect, useState } from "react";
 
 export const HomeScreen = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const Navigation = useNavigation();
   const { GeneralResponse } = useSelector((state) => state);
   const { data, loading, error } = useApiData();

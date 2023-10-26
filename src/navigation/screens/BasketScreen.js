@@ -7,24 +7,24 @@ import {
   FlatList,
 } from "react-native";
 import BasketItem from "../../components/BasketItem";
+import { useDispatch, useSelector } from "react-redux";
+import NoElementForFlatList from "../../components/NoElementForFlatList";
 
 export const BasketScreen = () => {
-  const products = [
-    { id: 1, productName: "Product 1", count: 2 },
-    { id: 2, productName: "Product 2", count: 1 },
-    { id: 3, productName: "Product 3", count: 3 },
-  ];
+  const { GeneralResponse } = useSelector((state) => state);
+  const products = GeneralResponse.basketItems;
   return (
     <View style={styles.container}>
       <FlatList
         data={products}
+        ListEmptyComponent={<NoElementForFlatList />}
         style={{ maxWidth: "100%" }}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <BasketItem />}
+        renderItem={({ item }) => <BasketItem product={item} />}
       />
       <View style={styles.bottomContainer}>
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.price}>
-          Toplam: 50000000 ₺
+          Total: {GeneralResponse.totalPrice} ₺
         </Text>
         <TouchableOpacity
           style={styles.button}

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"; // İkon setini seçin
+import { useDispatch, useSelector } from "react-redux";
+import { AddToBasket } from "../redux/action";
 
 const ProductCard = ({ product, onPress }) => {
   const [favori, setFavori] = useState(false); // Favori durumu için bir state kullanıyoruz
-
   const toggleFavori = () => {
     setFavori(!favori); // Favori durumunu tersine çevir
   };
-
+  const dispatch = useDispatch();
+  const { GeneralResponse } = useSelector((state) => state);
+  const basketItems = GeneralResponse.basketItems;
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
@@ -22,7 +25,9 @@ const ProductCard = ({ product, onPress }) => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => console.log("Add to Chart")}
+          onPress={() => {
+            dispatch(AddToBasket(product));
+          }}
         >
           <Text style={styles.buttonText}>Add to Chart</Text>
         </TouchableOpacity>

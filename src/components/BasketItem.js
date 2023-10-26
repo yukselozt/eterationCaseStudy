@@ -1,25 +1,28 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { AddToBasket, SubtractToBasket } from "../redux/action";
 
-const BasketItem = ({ product, count, price }) => {
+const BasketItem = ({ product }) => {
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View style={styles.left}>
         <Text style={styles.productName} numberOfLines={2} ellipsizeMode="tail">
-          {product}Aston Martin El Camino
+          {product.name}
         </Text>
-        <Text style={styles.price}>{price}100 ₺</Text>
+        <Text style={styles.price}>{product.price} ₺</Text>
       </View>
       <View style={styles.right}>
         <TouchableOpacity
-          onPress={console.log("decrement")}
+          onPress={() => dispatch(SubtractToBasket(product))}
           style={styles.operatorButton}
         >
           <Text style={styles.operatorText}>-</Text>
         </TouchableOpacity>
-        <Text style={styles.countText}>1</Text>
+        <Text style={styles.countText}>{product.quantity}</Text>
         <TouchableOpacity
-          onPress={console.log("increment")}
+          onPress={() => dispatch(AddToBasket(product))}
           style={styles.operatorButton}
         >
           <Text style={styles.operatorText}>+</Text>

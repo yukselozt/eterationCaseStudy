@@ -7,9 +7,12 @@ import {
   Text,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { AddToBasket } from "../../redux/action";
 
 export const DetailsScreen = ({ route }) => {
   const product = route.params.item;
+  const dispatch = useDispatch();
   console.log(product);
   return (
     <View style={styles.container}>
@@ -21,7 +24,7 @@ export const DetailsScreen = ({ route }) => {
         <Text style={styles.fiyat}>Fiyat: {product.price} ₺</Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => console.log("Basket")}
+          onPress={() => dispatch(AddToBasket(product))}
         >
           <Text style={styles.buttonText}>Add to Chart</Text>
         </TouchableOpacity>
