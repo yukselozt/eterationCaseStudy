@@ -2,21 +2,30 @@ import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"; // İkon setini seçin
 import { useDispatch, useSelector } from "react-redux";
-import { AddToBasket } from "../redux/action";
+import { AddToBasket, ToggleFavourites } from "../redux/action";
 
 const ProductCard = ({ product, onPress }) => {
   const [favori, setFavori] = useState(false); // Favori durumu için bir state kullanıyoruz
-  const toggleFavori = () => {
-    setFavori(!favori); // Favori durumunu tersine çevir
-  };
+
   const dispatch = useDispatch();
   const { GeneralResponse } = useSelector((state) => state);
   const basketItems = GeneralResponse.basketItems;
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
-        <TouchableOpacity style={styles.favoriButton} onPress={toggleFavori}>
-          <Icon name="heart" size={35} color={favori ? "red" : "gray"} />
+        <TouchableOpacity
+          style={styles.favoriButton}
+          onPress={() => dispatch(ToggleFavourites(product))}
+        >
+          <Icon
+            name="heart"
+            size={35}
+            color={
+              product.isFavourite && product.isFavourite === true
+                ? "red"
+                : "gray"
+            }
+          />
         </TouchableOpacity>
         <Image source={{ uri: product.image }} style={styles.image} />
         <Text style={styles.productPrice}>{product.price} ₺</Text>

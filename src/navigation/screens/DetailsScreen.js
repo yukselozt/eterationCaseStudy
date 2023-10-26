@@ -8,7 +8,8 @@ import {
   View,
 } from "react-native";
 import { useDispatch } from "react-redux";
-import { AddToBasket } from "../../redux/action";
+import { AddToBasket, ToggleFavourites } from "../../redux/action";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export const DetailsScreen = ({ route }) => {
   const product = route.params.item;
@@ -16,9 +17,21 @@ export const DetailsScreen = ({ route }) => {
   console.log(product);
   return (
     <View style={styles.container}>
-      <Image source={{ uri: product.image }} style={styles.resim} />
+      <Image source={{ uri: product.image }} style={styles.image} />
+      <TouchableOpacity
+        onPress={() => dispatch(ToggleFavourites(product))}
+        style={styles.heartIconContainer}
+      >
+        <Icon
+          name="heart"
+          size={35}
+          color={
+            product.isFavourite && product.isFavourite === true ? "red" : "gray"
+          }
+        />
+      </TouchableOpacity>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.aciklama}>{product.description}</Text>
+        <Text style={styles.description}>{product.description}</Text>
       </ScrollView>
       <View style={styles.bottomContainer}>
         <Text style={styles.fiyat}>Fiyat: {product.price} ₺</Text>
@@ -39,16 +52,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
+  heartIconContainer: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    alignSelf: "flex-end",
+  },
   scrollView: {
     flex: 1,
     width: "100%",
   },
-  resim: {
+  image: {
     width: "100%",
     aspectRatio: 5 / 3,
     marginBottom: 16,
   },
-  aciklama: {
+  description: {
     fontSize: 16,
     textAlign: "left",
     marginBottom: 16,

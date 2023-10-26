@@ -33,8 +33,9 @@ export const SubtractToBasket = (product) => {
   };
 };
 
-export const CalculateTotalBasket = () => {
+export const ToggleFavourites = (product) => {
   return {
-    type: "CALCULATE_TOTAL_BASKET",
+    type: "TOGGLE_FAVOURITES",
+    payload: product,
   };
 };

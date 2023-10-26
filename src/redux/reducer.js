@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   age: 26,
   basketItems: [],
   totalPrice: 0,
+  favourites: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -44,6 +45,20 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         totalPrice: state.totalPrice - parseInt(productSub.price),
       };
+    case "TOGGLE_FAVOURITES":
+      const productFavourite = action.payload;
+      const indexOfProductFavourite =
+        state.favourites.indexOf(productFavourite);
+      if (indexOfProductFavourite === -1) {
+        // Eğer ürün favorilerde yok ise favorilere ekle
+        state.favourites.push(productFavourite);
+        productFavourite.isFavourite = true;
+      } else {
+        // Eğer ürün zaten favorilerde ise favorilerden çıkar
+        state.favourites.splice(indexOfProductFavourite, 1);
+        productFavourite.isFavourite = false;
+      }
+      return { ...state };
     // case "CALCULATE_TOTAL_BASKET":
     //   return { ...state, totalPrice: calculateTotalBasket(state.basketItems) };
     default:
