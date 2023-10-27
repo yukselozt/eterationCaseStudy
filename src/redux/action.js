@@ -52,3 +52,10 @@ export const ToggleFavourites = (product) => {
     payload: product,
   };
 };
+
+export const SetFilter = (filter) => {
+  return {
+    type: "SET_FILTER",
+    payload: filter,
+  };
+};
