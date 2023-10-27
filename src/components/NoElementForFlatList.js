@@ -7,7 +7,7 @@ const NoElementForFlatList = () => {
   const { t } = useTranslation();
   return (
     <View style={styles.noElement}>
-      <Text style={styles.text}> {t("noElementForFlatList")} </Text>
+      <Text style={styles.text}>{t("noElementForFlatList")}</Text>
       <Icon name="exclamation" size={80} color="#000" />
     </View>
   );

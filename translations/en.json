@@ -15,12 +15,13 @@
   "total": "Total",
   "addToBasket": "Add To Basket",
   "complete": "Complete",
-  "noElementForFlatList": " There's No Element In The List !!",
+  "noElementForFlatList": "There's No Element In The List !!",
   "cheapToExpensive": "Cheap To Expensive",
   "expensiveToCheap": "Expensive To Cheap",
   "lambo": "Lamborghini",
   "resetFilter": "Reset Filter",
   "close": "Close",
   "details": "Details",
-  "thankYou": "Thank You !!"
+  "thankYou": "Thank You For Your Concern !!",
+  "777": ":)"
 }

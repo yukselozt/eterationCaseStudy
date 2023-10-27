@@ -15,12 +15,13 @@
   "total": "Toplam",
   "addToBasket": "Sepete Ekle",
   "complete": "Tamamla",
-  "noElementForFlatList": " Listede Öğe Bulunmuyor !!",
+  "noElementForFlatList": "Listede Öğe Bulunmuyor !!",
   "cheapToExpensive": "Ucuzdan Pahalıya",
   "expensiveToCheap": "Pahalıdan Ucuza",
   "lambo": "Lamborghini",
   "resetFilter": "Filtreyi Resetle",
   "close": "Kapat",
   "details": "Detaylar",
-  "thankYou": "Teşekkürler !!"
+  "thankYou": "Alakanız İçin Teşekkürler !!",
+  "777": ":)"
 }

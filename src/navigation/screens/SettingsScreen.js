@@ -24,6 +24,14 @@ export const SettingsScreen = () => {
         >
           {t("thankYou")}
         </Text>
+        <Text
+          style={[
+            styles.profileText,
+            { textAlign: "center", color: GeneralResponse.theme.textColor },
+          ]}
+        >
+          {t("777")}
+        </Text>
         <Text style={styles.profileText}>
           {t("name")}: {GeneralResponse.name}
         </Text>
@@ -53,6 +61,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   profileText: {
+    textAlign: "center",
     fontSize: 18,
     marginBottom: 10,
   },
