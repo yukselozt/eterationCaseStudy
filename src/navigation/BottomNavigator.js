@@ -4,18 +4,20 @@ import { BasketScreen } from "./screens/BasketScreen";
 import { FavouritesScreen } from "./screens/FavouritesScreen";
 import { SettingsScreen } from "./screens/SettingsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from "react-native-vector-icons/FontAwesome"; // İkon setini seçin
+import Icon from "react-native-vector-icons/FontAwesome";
 import { useSelector } from "react-redux";
 import { calculateTabbarBadge } from "../helpers/calculateTabbarBadge";
+import { useTranslation } from "react-i18next";
 
 export const BottomNavigator = () => {
   const Tabs = createBottomTabNavigator();
   const { GeneralResponse } = useSelector((state) => state);
+  const { t } = useTranslation();
 
   return (
     <Tabs.Navigator initialRouteName="Home">
       <Tabs.Screen
-        name="Home"
+        name={t("home")}
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -24,7 +26,7 @@ export const BottomNavigator = () => {
         }}
       />
       <Tabs.Screen
-        name="Basket"
+        name={t("basket")}
         component={BasketScreen}
         options={{
           tabBarBadge: calculateTabbarBadge(GeneralResponse.basketItems),
@@ -36,7 +38,7 @@ export const BottomNavigator = () => {
         }}
       />
       <Tabs.Screen
-        name="Favourites"
+        name={t("favourites")}
         component={FavouritesScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -45,11 +47,11 @@ export const BottomNavigator = () => {
         }}
       />
       <Tabs.Screen
-        name="Settings"
+        name={t("settings")}
         component={SettingsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="user" size={35} color={color} />
+            <Icon name="cog" size={35} color={color} />
           ),
         }}
       />

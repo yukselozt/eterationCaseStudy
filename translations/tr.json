@@ -1,4 +1,26 @@
 {
-  "water": "Su İçme Hatırlatıcısı",
-  "changeLanguage": "Dili Değiştir"
+  "water": "",
+  "changeLanguage": "Dili Değiştir",
+  "home": "Anasayfa",
+  "basket": "Sepet",
+  "favourites": "Favoriler",
+  "settings": "Ayarlar",
+  "name": "Ad",
+  "surname": "Soyad",
+  "age": "Yaş",
+  "changeTheme": "Temayı Değiştir",
+  "filters": "Filtreler",
+  "selectFilter": "Filtre Seç",
+  "searchSth": "Arama Yap ...",
+  "total": "Toplam",
+  "addToBasket": "Sepete Ekle",
+  "complete": "Tamamla",
+  "noElementForFlatList": " Listede Öğe Bulunmuyor !!",
+  "cheapToExpensive": "Ucuzdan Pahalıya",
+  "expensiveToCheap": "Pahalıdan Ucuza",
+  "lambo": "Lamborghini",
+  "resetFilter": "Filtreyi Resetle",
+  "close": "Kapat",
+  "details": "Detaylar",
+  "thankYou": "Teşekkürler !!"
 }

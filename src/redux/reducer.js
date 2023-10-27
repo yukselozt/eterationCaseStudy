@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { lightTheme, darkTheme } from "../theme/Theme";
 
 const INITIAL_STATE = {
   name: "Yüksel",
@@ -8,6 +9,7 @@ const INITIAL_STATE = {
   totalPrice: 0,
   favourites: [],
   filter: "",
+  theme: lightTheme,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -77,6 +79,11 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state };
     case "SET_FILTER":
       return { ...state, filter: action.payload };
+    case "CHANGE_THEME":
+      return {
+        ...state,
+        theme: state.theme === lightTheme ? darkTheme : lightTheme,
+      };
     default:
       return state;
   }

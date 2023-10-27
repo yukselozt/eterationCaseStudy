@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import NoElementForFlatList from "../../components/NoElementForFlatList";
 import { SetName } from "../../redux/action";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 
 export const BasketScreen = () => {
+  const { t } = useTranslation();
   const { GeneralResponse } = useSelector((state) => state);
   const products = GeneralResponse.basketItems;
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ export const BasketScreen = () => {
       />
       <View style={styles.bottomContainer}>
         <Text numberOfLines={2} ellipsizeMode="tail" style={styles.price}>
-          Total: {GeneralResponse.totalPrice} ₺
+          {t("total")}: {GeneralResponse.totalPrice} ₺
         </Text>
         <TouchableOpacity
           style={styles.button}
@@ -38,7 +40,7 @@ export const BasketScreen = () => {
             })();
           }}
         >
-          <Text style={styles.buttonText}>Complete</Text>
+          <Text style={styles.buttonText}>{t("complete")}</Text>
         </TouchableOpacity>
       </View>
     </View>

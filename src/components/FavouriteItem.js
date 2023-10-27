@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
   },
-  // Diğer stil özellikleri
 });
 
 export default FavouriteItem;

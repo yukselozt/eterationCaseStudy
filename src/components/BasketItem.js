@@ -5,6 +5,7 @@ import { AddToBasket, SubtractToBasket } from "../redux/action";
 
 const BasketItem = ({ product }) => {
   const dispatch = useDispatch();
+  const { GeneralResponse } = useSelector((state) => state);
   return (
     <View style={styles.container}>
       <View style={styles.left}>
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: "lightgray",
-    width: "100%", // Ekranın tamamını kapla
+    width: "100%",
   },
   left: {
     flex: 1,

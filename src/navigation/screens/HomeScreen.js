@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import NoElementForFlatList from "../../components/NoElementForFlatList";
-
 import { SetTotalPrice, SetBasket } from "../../redux/action";
 import { useNavigation } from "@react-navigation/native";
 import ProductCard from "../../components/ProductCard";
@@ -18,8 +17,10 @@ import useApiData from "../../hooks/useApiData";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FilterModal } from "../../components/FilterModal";
+import { useTranslation } from "react-i18next";
 
 export const HomeScreen = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const Navigation = useNavigation();
   const { data, loading, error } = useApiData();
@@ -35,17 +36,17 @@ export const HomeScreen = () => {
   );
   const handleFilter = () => {
     var filterResult = [];
-    if (GeneralResponse.filter === "Ucuzdan Pahalıya") {
+    if (GeneralResponse.filter === t("cheapToExpensive")) {
       filterResult = filteredData
         .slice()
         .sort((a, b) => parseInt(a.price) - parseInt(b.price));
-    } else if (GeneralResponse.filter === "Pahalıdan Ucuza") {
+    } else if (GeneralResponse.filter === t("expensiveToCheap")) {
       filterResult = filteredData
         .slice()
         .sort((a, b) => parseInt(b.price) - parseInt(a.price));
     } else {
       filterResult = filteredData.filter(
-        (product) => product.brand === "Lamborghini"
+        (product) => product.brand === t("lambo")
       );
     }
     return filterResult;
@@ -82,7 +83,7 @@ export const HomeScreen = () => {
         <>
           <TextInput
             style={styles.searchBar}
-            placeholder="Arama yap..."
+            placeholder={t("searchSth")}
             // collapsable={true}
             value={searchText}
             onChangeText={handleSearch}
@@ -93,13 +94,13 @@ export const HomeScreen = () => {
               ellipsizeMode="tail"
               style={styles.filterText}
             >
-              Filters: {GeneralResponse.filter}
+              {t("filters")}: {GeneralResponse.filter}
             </Text>
             <TouchableOpacity
               style={styles.filterButton}
               onPress={() => setModalVisible(true)}
             >
-              <Text style={styles.filterText}>Select Filter</Text>
+              <Text style={styles.filterText}>{t("selectFilter")}</Text>
             </TouchableOpacity>
           </View>
 

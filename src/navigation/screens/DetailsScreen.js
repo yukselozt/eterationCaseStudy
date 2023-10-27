@@ -10,8 +10,10 @@ import {
 import { useDispatch } from "react-redux";
 import { AddToBasket, ToggleFavourites } from "../../redux/action";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { useTranslation } from "react-i18next";
 
 export const DetailsScreen = ({ route }) => {
+  const { t } = useTranslation();
   const product = route.params.item;
   const dispatch = useDispatch();
   return (
@@ -33,12 +35,14 @@ export const DetailsScreen = ({ route }) => {
         <Text style={styles.description}>{product.description}</Text>
       </ScrollView>
       <View style={styles.bottomContainer}>
-        <Text style={styles.fiyat}>Fiyat: {product.price} ₺</Text>
+        <Text style={styles.fiyat}>
+          {t("total")}: {product.price} ₺
+        </Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => dispatch(AddToBasket(product))}
         >
-          <Text style={styles.buttonText}>Add to Chart</Text>
+          <Text style={styles.buttonText}>{t("addToBasket")}</Text>
         </TouchableOpacity>
       </View>
     </View>

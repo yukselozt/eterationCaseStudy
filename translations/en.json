@@ -1,4 +1,26 @@
 {
   "water": "Water Reminder",
-  "changeLanguage": "Change Language"
+  "changeLanguage": "Change Language",
+  "home": "Home",
+  "basket": "Basket",
+  "favourites": "Favourites",
+  "settings": "Settings",
+  "name": "Name",
+  "surname": "Surname",
+  "age": "Age",
+  "changeTheme": "Change Theme",
+  "filters": "Filters",
+  "selectFilter": "Select Filter",
+  "searchSth": "Search ...",
+  "total": "Total",
+  "addToBasket": "Add To Basket",
+  "complete": "Complete",
+  "noElementForFlatList": " There's No Element In The List !!",
+  "cheapToExpensive": "Cheap To Expensive",
+  "expensiveToCheap": "Expensive To Cheap",
+  "lambo": "Lamborghini",
+  "resetFilter": "Reset Filter",
+  "close": "Close",
+  "details": "Details",
+  "thankYou": "Thank You !!"
 }

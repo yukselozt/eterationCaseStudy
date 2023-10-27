@@ -1,26 +1,42 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
+import ChangeLangButton from "../../components/ChangeLangButton";
+import ChangeThemeButton from "../../components/ChangeThemeButton";
+import { useTranslation } from "react-i18next";
 
 export const SettingsScreen = () => {
   const { GeneralResponse } = useSelector((state) => state);
-
+  const { t } = useTranslation();
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: GeneralResponse.theme.backgroundColor },
+      ]}
+    >
       <View style={styles.profile}>
-        <Text style={styles.profileText}>Ad: {GeneralResponse.name}</Text>
-        <Text style={styles.profileText}>Soyad: {GeneralResponse.surname}</Text>
-        <Text style={styles.profileText}>Yaş: {GeneralResponse.age}</Text>
+        <Text
+          style={[
+            styles.profileText,
+            { textAlign: "center", color: GeneralResponse.theme.textColor },
+          ]}
+        >
+          {t("thankYou")}
+        </Text>
+        <Text style={styles.profileText}>
+          {t("name")}: {GeneralResponse.name}
+        </Text>
+        <Text style={styles.profileText}>
+          {t("surname")}: {GeneralResponse.surname}
+        </Text>
+        <Text style={styles.profileText}>
+          {t("age")}: {GeneralResponse.age}
+        </Text>
       </View>
       <View style={styles.buttons}>
-        <Button
-          title="Change Language"
-          onPress={() => console.log("Ayarlar butonuna tıklandı")}
-        />
-        <Button
-          title="Change Theme"
-          onPress={() => console.log("Profil Düzenle butonuna tıklandı")}
-        />
+        <ChangeLangButton />
+        <ChangeThemeButton />
       </View>
     </View>
   );

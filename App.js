@@ -22,7 +22,7 @@ export default function App() {
             name="BottomNavigator"
             component={BottomNavigator}
           />
-          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name={t("details")} component={DetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

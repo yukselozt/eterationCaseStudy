@@ -59,3 +59,8 @@ export const SetFilter = (filter) => {
     payload: filter,
   };
 };
+export const ChangeTheme = () => {
+  return {
+    type: "CHANGE_THEME",
+  };
+};

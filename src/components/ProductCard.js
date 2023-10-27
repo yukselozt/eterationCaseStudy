@@ -3,9 +3,11 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"; // İkon setini seçin
 import { useDispatch, useSelector } from "react-redux";
 import { AddToBasket, ToggleFavourites } from "../redux/action";
+import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ product, onPress }) => {
-  const [favori, setFavori] = useState(false); // Favori durumu için bir state kullanıyoruz
+  const { t } = useTranslation();
+  const [favori, setFavori] = useState(false);
 
   const dispatch = useDispatch();
   const { GeneralResponse } = useSelector((state) => state);
@@ -38,7 +40,7 @@ const ProductCard = ({ product, onPress }) => {
             dispatch(AddToBasket(product));
           }}
         >
-          <Text style={styles.buttonText}>Add to Chart</Text>
+          <Text style={styles.buttonText}>{t("addToBasket")}</Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
