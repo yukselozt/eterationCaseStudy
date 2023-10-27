@@ -6,6 +6,7 @@ import { SettingsScreen } from "./screens/SettingsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome"; // İkon setini seçin
 import { useSelector } from "react-redux";
+import { calculateTabbarBadge } from "../helpers/calculateTabbarBadge";
 
 export const BottomNavigator = () => {
   const Tabs = createBottomTabNavigator();
@@ -26,7 +27,7 @@ export const BottomNavigator = () => {
         name="Basket"
         component={BasketScreen}
         options={{
-          tabBarBadge: GeneralResponse.basketItems.length,
+          tabBarBadge: calculateTabbarBadge(GeneralResponse.basketItems),
           tabBarBadgeStyle:
             GeneralResponse.basketItems.length === 0 ? { display: "none" } : {},
           tabBarIcon: ({ color, size }) => (

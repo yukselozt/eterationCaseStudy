@@ -10,11 +10,12 @@ import {
   Text,
   View,
 } from "react-native";
-import { IncrementAge, AddToBasket } from "../../redux/action";
+import { SetTotalPrice, SetBasket } from "../../redux/action";
 import { useNavigation } from "@react-navigation/native";
 import ProductCard from "../../components/ProductCard";
 import useApiData from "../../hooks/useApiData";
 import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,24 @@ export const HomeScreen = () => {
   const handleSearch = (text) => {
     setSearchText(text);
   };
+  useEffect(() => {
+    (async () => {
+      const basketItems = await AsyncStorage.getItem("basketItems");
+      const parsedBasketItems = JSON.parse(basketItems);
+      const totalPrice = await AsyncStorage.getItem("totalPrice");
+      const parsedTotalPrice = JSON.parse(totalPrice);
+      if (parsedBasketItems) {
+        dispatch(SetBasket(parsedBasketItems));
+      } else {
+        console.log("ne basketItems'i ya ?");
+      }
+      if (parsedTotalPrice) {
+        dispatch(SetTotalPrice(parsedTotalPrice));
+      } else {
+        console.log("ne totalPrice'i ya ?");
+      }
+    })();
+  }, []);
   return (
     <View style={styles.container}>
       {loading ? (

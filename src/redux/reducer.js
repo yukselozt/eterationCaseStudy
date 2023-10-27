@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loadCartItems } from "./storage";
 
 const INITIAL_STATE = {
   name: "Yüksel",
+  surname: "ÖZTÜRK",
   age: 26,
   basketItems: [],
   totalPrice: 0,
@@ -15,6 +15,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, name: action.payload };
     case "SET_AGE":
       return { ...state, age: action.payload };
+    case "SET_BASKET":
+      return { ...state, basketItems: action.payload };
+    case "SET_TOTAL_PRICE":
+      return { ...state, totalPrice: action.payload };
     case "ADD_TO_BASKET":
       const product = action.payload;
       const existingProduct = state.basketItems.find(
@@ -29,6 +33,10 @@ export default (state = INITIAL_STATE, action) => {
         state.basketItems.push(product);
       }
       AsyncStorage.setItem("basketItems", JSON.stringify(state.basketItems));
+      AsyncStorage.setItem(
+        "totalPrice",
+        JSON.stringify(state.totalPrice + parseFloat(product.price))
+      );
       return {
         ...state,
         totalPrice: state.totalPrice + parseFloat(product.price),
@@ -43,6 +51,11 @@ export default (state = INITIAL_STATE, action) => {
         // Eğer sepette üründen sadece 1 tane var ise sepetten sil
         state.basketItems.splice(indexOfProductSub, 1);
       }
+      AsyncStorage.setItem("basketItems", JSON.stringify(state.basketItems));
+      AsyncStorage.setItem(
+        "totalPrice",
+        JSON.stringify(state.totalPrice - parseFloat(productSub.price))
+      );
       return {
         ...state,
         totalPrice: state.totalPrice - parseInt(productSub.price),
@@ -61,8 +74,6 @@ export default (state = INITIAL_STATE, action) => {
         productFavourite.isFavourite = false;
       }
       return { ...state };
-    // case "CALCULATE_TOTAL_BASKET":
-    //   return { ...state, totalPrice: calculateTotalBasket(state.basketItems) };
     default:
       return state;
   }

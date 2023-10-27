@@ -1,12 +1,10 @@
 import axios from "axios";
+import { API_URL } from "@env";
 
 const FetchData = {
   fetchData: async () => {
     try {
-      const response = await axios.get(
-        "https://5fc9346b2af77700165ae514.mockapi.io/products"
-      );
-      console.log(response.data);
+      const response = await axios.get(`${API_URL}`);
       return response.data;
     } catch (error) {
       throw error;

@@ -14,7 +14,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 export const DetailsScreen = ({ route }) => {
   const product = route.params.item;
   const dispatch = useDispatch();
-  console.log(product);
   return (
     <View style={styles.container}>
       <Image source={{ uri: product.image }} style={styles.image} />

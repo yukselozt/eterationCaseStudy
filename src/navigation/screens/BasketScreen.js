@@ -9,22 +9,20 @@ import {
 import BasketItem from "../../components/BasketItem";
 import { useDispatch, useSelector } from "react-redux";
 import NoElementForFlatList from "../../components/NoElementForFlatList";
-import { loadCardItems } from "../../redux/storage";
-import { useEffect } from "react";
+import { SetName } from "../../redux/action";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const BasketScreen = () => {
   const { GeneralResponse } = useSelector((state) => state);
   const products = GeneralResponse.basketItems;
-  useEffect(() => {
-    loadCardItems();
-  }, []);
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <FlatList
         data={products}
         ListEmptyComponent={<NoElementForFlatList />}
         style={{ maxWidth: "100%" }}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <BasketItem product={item} />}
       />
       <View style={styles.bottomContainer}>
@@ -33,7 +31,12 @@ export const BasketScreen = () => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => console.log("Basket")}
+          onPress={() => {
+            (async () => {
+              await AsyncStorage.removeItem("basketItems");
+              await AsyncStorage.removeItem("totalPrice");
+            })();
+          }}
         >
           <Text style={styles.buttonText}>Complete</Text>
         </TouchableOpacity>

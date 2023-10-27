@@ -19,6 +19,12 @@ export const IncrementAge = () => {
   };
 };
 
+export const SetBasket = (asyncStorage) => {
+  return {
+    type: "SET_BASKET",
+    payload: asyncStorage,
+  };
+};
 export const AddToBasket = (product) => {
   return {
     type: "ADD_TO_BASKET",
@@ -30,6 +36,13 @@ export const SubtractToBasket = (product) => {
   return {
     type: "SUBTRACT_TO_BASKET",
     payload: product,
+  };
+};
+
+export const SetTotalPrice = (asyncStorage) => {
+  return {
+    type: "SET_TOTAL_PRICE",
+    payload: asyncStorage,
   };
 };
 
