@@ -1,15 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   TextInput,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
-  TouchableWithoutFeedback,
   TouchableOpacity,
 } from "react-native";
 import NoElementForFlatList from "../../components/NoElementForFlatList";
@@ -29,10 +26,10 @@ export const HomeScreen = () => {
   const [searchText, setSearchText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const { GeneralResponse } = useSelector((state) => state);
-
   const handleSearch = (text) => {
     setSearchText(text);
   };
+
   const filteredData = data?.filter((item) =>
     item.name.toLowerCase().includes(searchText.toLowerCase())
   );
@@ -72,6 +69,7 @@ export const HomeScreen = () => {
       }
     })();
   }, []);
+
   return (
     <View style={styles.container}>
       <FilterModal
@@ -90,7 +88,13 @@ export const HomeScreen = () => {
             onChangeText={handleSearch}
           />
           <View style={styles.filter}>
-            <Text style={styles.filterText}>Filters:</Text>
+            <Text
+              numberOfLines={2}
+              ellipsizeMode="tail"
+              style={styles.filterText}
+            >
+              Filters: {GeneralResponse.filter}
+            </Text>
             <TouchableOpacity
               style={styles.filterButton}
               onPress={() => setModalVisible(true)}
@@ -104,6 +108,8 @@ export const HomeScreen = () => {
             keyExtractor={(item) => item.id}
             horizontal={false}
             numColumns={2}
+            // onEndReached={() => sayfaIleriGit()}
+            onEndReachedThreshold={0.1}
             ListEmptyComponent={<NoElementForFlatList />}
             contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
@@ -153,7 +159,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   filterText: {
-    fontSize: 18,
+    maxWidth: 200,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
